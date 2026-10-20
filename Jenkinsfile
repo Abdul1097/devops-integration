@@ -28,19 +28,19 @@ pipeline {
             }
         }
 
-        stage('Push image to Hub') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-pwd',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    bat '''
-                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
-                        docker push javatechie/devops-integration
-                    '''
-                }
-            }
+       stage('Push image to Hub') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-pwd',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+            bat '''
+                echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                docker push abdul1097/devops-integration
+            '''
         }
     }
+    }
+}
 }
